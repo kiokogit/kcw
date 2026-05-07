@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="KCW Programmes — Public Policy Debates, Political Consultancy, IFK/B4 Conferences, and DCCA Project M&E.">
+    <title>Our Programmes | Kenya Cannot Wait</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .programme-section {
+            padding: 80px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .programme-section:last-of-type {
+            border-bottom: none;
+        }
+
+        .prog-header {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 20px;
+            align-items: start;
+            margin-bottom: 40px;
+        }
+
+        .prog-num-badge {
+            font-family: var(--font-display);
+            font-size: 80px;
+            color: rgba(255, 215, 0, 0.08);
+            line-height: 1;
+            flex-shrink: 0;
+            letter-spacing: 0.05em;
+        }
+
+        .prog-title-area {}
+
+        .prog-title-area h2 {
+            font-family: var(--font-display);
+            font-size: clamp(28px, 4.5vw, 54px);
+            letter-spacing: 0.06em;
+            margin-bottom: 8px;
+        }
+
+        .prog-title-area .abbr {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.25em;
+            color: var(--gold);
+            text-transform: uppercase;
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        .prog-body-grid {
+            display: grid;
+            grid-template-columns: 1fr 340px;
+            gap: 50px;
+            align-items: start;
+        }
+
+        .prog-body-grid.reverse {
+            direction: rtl;
+        }
+
+        .prog-body-grid.reverse>* {
+            direction: ltr;
+        }
+
+        .prog-lead-text {
+            font-size: 16px;
+            color: var(--silver);
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .prog-body p {
+            font-size: 14px;
+            color: var(--grey);
+            line-height: 1.8;
+            margin-bottom: 14px;
+        }
+
+        .prog-sidebar {
+            background: var(--card);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .prog-sidebar-header {
+            background: var(--gold);
+            padding: 18px 24px;
+        }
+
+        .prog-sidebar-header h4 {
+            font-family: var(--font-display);
+            font-size: 16px;
+            letter-spacing: 0.1em;
+            color: var(--black);
+        }
+
+        .prog-sidebar-body {
+            padding: 20px 24px;
+        }
+
+        .prog-sidebar ul {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .prog-sidebar ul li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            font-size: 14px;
+            color: var(--silver);
+        }
+
+        .prog-sidebar ul li::before {
+            content: '→';
+            color: var(--gold);
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+
+        .consultancy-packages {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 16px;
+            margin-top: 24px;
+        }
+
+        .pkg-card {
+            background: var(--card);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 8px;
+            padding: 22px;
+            transition: var(--transition);
+        }
+
+        .pkg-card:hover {
+            border-color: rgba(255, 215, 0, 0.3);
+            transform: translateY(-3px);
+        }
+
+        .pkg-icon {
+            font-size: 24px;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .pkg-card h4 {
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 6px;
+            line-height: 1.3;
+        }
+
+        .pkg-card p {
+            font-size: 12px;
+            color: var(--grey);
+            line-height: 1.5;
+        }
+
+        .conference-highlight {
+            background: linear-gradient(135deg, var(--blue) 0%, #001a40 100%);
+            border-radius: 8px;
+            padding: 36px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .conference-highlight::before {
+            content: 'IFK';
+            position: absolute;
+            right: -20px;
+            bottom: -20px;
+            font-family: var(--font-display);
+            font-size: 120px;
+            color: rgba(255, 255, 255, 0.04);
+            letter-spacing: 0.1em;
+        }
+
+        .conference-highlight h4 {
+            font-family: var(--font-display);
+            font-size: 22px;
+            letter-spacing: 0.1em;
+            color: var(--gold);
+            margin-bottom: 8px;
+        }
+
+        .conference-highlight p {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.7;
+        }
+
+        .conf-stat {
+            display: flex;
+            gap: 30px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .conf-stat-item {}
+
+        .conf-stat-item .cs-num {
+            font-family: var(--font-display);
+            font-size: 36px;
+            color: var(--gold);
+            letter-spacing: 0.05em;
+        }
+
+        .conf-stat-item .cs-label {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .dcca-box {
+            background: linear-gradient(135deg, rgba(178, 0, 0, 0.12), rgba(0, 0, 0, 0) 60%);
+            border: 1px solid rgba(178, 0, 0, 0.2);
+            border-radius: 8px;
+            padding: 36px;
+        }
+
+        .dcca-box h4 {
+            font-family: var(--font-display);
+            font-size: 20px;
+            letter-spacing: 0.08em;
+            color: var(--gold);
+            margin-bottom: 12px;
+        }
+
+        .dcca-box p {
+            font-size: 14px;
+            color: var(--grey);
+            line-height: 1.8;
+            margin-bottom: 12px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ═══ NAVIGATION ═══ -->
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="index.html" class="nav-logo">
+                <div class="nav-logo-badge">KCW</div>
+                <div class="nav-logo-text">
+                    <span class="org-name">Kenya Cannot Wait</span>
+                    <span class="org-tagline">One People · One Cake · One Faith</span>
+                </div>
+            </a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link" data-page="index.html">Home</a>
+                <a href="about.html" class="nav-link" data-page="about.html">About</a>
+                <a href="programmes.html" class="nav-link" data-page="programmes.html">Programmes</a>
+                <a href="community.html" class="nav-link" data-page="community.html">Community</a>
+                <a href="contact.html" class="nav-link" data-page="contact.html">Contact</a>
+                <a href="donate.html" class="nav-link nav-cta" data-page="donate.html">Give &amp; Partner</a>
+            </div>
+            <button class="hamburger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+        </div>
+    </nav>
+    <div class="nav-mobile">
+        <a href="index.html" class="nav-link" data-page="index.html">Home</a>
+        <a href="about.html" class="nav-link" data-page="about.html">About Us</a>
+        <a href="programmes.html" class="nav-link" data-page="programmes.html">Programmes</a>
+        <a href="community.html" class="nav-link" data-page="community.html">Community</a>
+        <a href="contact.html" class="nav-link" data-page="contact.html">Contact</a>
+        <a href="donate.html" class="nav-link nav-cta" data-page="donate.html">Give &amp; Partner</a>
+    </div>
+
+    <!-- ═══ PAGE HERO ═══ -->
+    <section class="page-hero section-dark">
+        <div class="page-hero-watermark" aria-hidden="true">04</div>
+        <div class="container">
+            <div class="breadcrumb"><span>Our Programmes</span></div>
+            <h1 class="display">KCW <span class="text-gold">PROGRAMMES</span></h1>
+            <p>Four broad programme pillars working together to transform Kenya from the grassroot up — through debate,
+                consultancy, conferences, and constitutional reform advocacy.</p>
+        </div>
+    </section>
+
+    <!-- ═══ PROGRAMME INTRO ═══ -->
+    <section class="section section-black">
+        <div class="container">
+            <div class="grid-4 reveal">
+                <div class="card text-center">
+                    <div class="card-icon" style="margin:0 auto 20px;">📢</div>
+                    <h3>PPD</h3>
+                    <p>Public Policy Debates — civic education through structured discourse</p>
+                </div>
+                <div class="card text-center reveal-delay-1">
+                    <div class="card-icon" style="margin:0 auto 20px;">🎯</div>
+                    <h3>GPCS</h3>
+                    <p>Grassroot Political Consultancy — equipping leaders to lead better</p>
+                </div>
+                <div class="card text-center reveal-delay-2">
+                    <div class="card-icon" style="margin:0 auto 20px;">🏟️</div>
+                    <h3>IFK/B4</h3>
+                    <p>Annual Conferences — 49 events across all 47 Kenyan counties</p>
+                </div>
+                <div class="card text-center reveal-delay-3">
+                    <div class="card-icon" style="margin:0 auto 20px;">📋</div>
+                    <h3>DCCAME</h3>
+                    <p>DCCA Monitoring &amp; Evaluation — constitutional reform advocacy</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ PROGRAMME 1: PPD ═══ -->
+    <section class="programme-section section-charcoal" id="ppd">
+        <div class="container">
+            <div class="prog-header reveal">
+                <div class="prog-title-area">
+                    <span class="section-label">Programme 01</span>
+                    <div class="accent-line"></div>
+                    <span class="abbr">PPD — Public Policy Debates</span>
+                    <h2>PUBLIC POLICY <span class="text-gold">DEBATES</span></h2>
+                </div>
+                <div class="prog-num-badge" aria-hidden="true">01</div>
+            </div>
+            <div class="prog-body-grid reveal">
+                <div class="prog-body">
+                    <p class="prog-lead-text">We take pride in hosting and facilitating independent public policy
+                        debates on our platforms with the goal of building an informed, engaged citizenry around policy
+                        developments and updates.</p>
+                    <p>Our Public Policy Debates are critical in boosting civic education and capacity on emerging
+                        political discourses in Kenya. Through structured debate, we ensure that complex governance
+                        issues are made accessible and actionable for citizens at every level.</p>
+                    <p>These debates serve as the foundation of KCW's civic education mandate — creating a pipeline of
+                        informed citizens who can hold their leaders accountable, demand better policy, and participate
+                        meaningfully in the democratic process.</p>
+                    <p>PPDs take place across KCW's county network, bringing debate directly to the communities most
+                        affected by the policies being discussed. Facilitators are drawn from academia, civil society,
+                        media, and civic leadership.</p>
+                    <div class="btn-group" style="margin-top:28px;">
+                        <a href="community.html" class="btn btn-gold">Join as a Facilitator</a>
+                        <a href="contact.html" class="btn btn-outline">Partner with Us</a>
+                    </div>
+                </div>
+                <div class="prog-sidebar">
+                    <div class="prog-sidebar-header">
+                        <h4>KEY FEATURES</h4>
+                    </div>
+                    <div class="prog-sidebar-body">
+                        <ul>
+                            <li>Independent, non-partisan platform for civic debate</li>
+                            <li>Coverage of national and county policy issues</li>
+                            <li>Accessible format for grassroot communities</li>
+                            <li>Expert facilitators from diverse fields</li>
+                            <li>Available across all 47 counties</li>
+                            <li>Builds civic education and policy literacy</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ PROGRAMME 2: GPCS ═══ -->
+    <section class="programme-section section-dark" id="gpcs">
+        <div class="container">
+            <div class="prog-header reveal">
+                <div class="prog-title-area">
+                    <span class="section-label">Programme 02</span>
+                    <div class="accent-line"></div>
+                    <span class="abbr">GPCS — Grassroot Political Consultancy Services</span>
+                    <h2>POLITICAL <span class="text-gold">CONSULTANCY</span></h2>
+                </div>
+                <div class="prog-num-badge" aria-hidden="true">02</div>
+            </div>
+            <div class="prog-body reveal">
+                <p class="prog-lead-text">KCW is an unmatched provider of political consultancy services to new and
+                    established politicians seeking to begin or sustain ethical, effective political careers at every
+                    level of government.</p>
+                <p style="font-size:14px;color:var(--grey);line-height:1.8;margin-bottom:20px;">We are equipped to
+                    provide needful consultancy to those seeking a new office as well as those interested to retain
+                    their seats. Our high-quality political consultancy services make us an equally reliable shoulder
+                    for all sitting political office holders navigating turbulent political times.</p>
+                <p style="font-size:14px;color:var(--grey);line-height:1.8;margin-bottom:32px;">KCW's GPCS is especially
+                    focused on empowering youth candidates — breaking down the financial and structural barriers that
+                    prevent young, qualified Kenyans from entering electoral politics.</p>
+                <h4
+                    style="font-family:var(--font-display);font-size:20px;letter-spacing:0.08em;color:var(--gold);margin-bottom:20px;">
+                    OUR 5 CONSULTANCY PACKAGES</h4>
+                <div class="consultancy-packages">
+                    <div class="pkg-card">
+                        <span class="pkg-icon">🗳️</span>
+                        <h4>Election Campaign Consultancy</h4>
+                        <p>Full-spectrum campaign strategy, messaging, voter outreach, and ground operation planning.
+                        </p>
+                    </div>
+                    <div class="pkg-card">
+                        <span class="pkg-icon">🚨</span>
+                        <h4>Crisis Management Consultancy</h4>
+                        <p>Rapid response guidance for political office holders facing reputational or operational
+                            crises.</p>
+                    </div>
+                    <div class="pkg-card">
+                        <span class="pkg-icon">📜</span>
+                        <h4>Public Policy Consultancy</h4>
+                        <p>Policy development and legislative advisory for elected officials serving their constituents.
+                        </p>
+                    </div>
+                    <div class="pkg-card">
+                        <span class="pkg-icon">👥</span>
+                        <h4>People Management Consultancy</h4>
+                        <p>Team building, stakeholder engagement, and constituency relationship management for leaders.
+                        </p>
+                    </div>
+                    <div class="pkg-card">
+                        <span class="pkg-icon">💰</span>
+                        <h4>Financial Management Consultancy</h4>
+                        <p>Campaign finance management, donor relations, and compliant resource mobilization strategies.
+                        </p>
+                    </div>
+                </div>
+                <div class="btn-group" style="margin-top:32px;">
+                    <a href="contact.html" class="btn btn-gold">Enquire About Consultancy</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ PROGRAMME 3: IFK/B4 ═══ -->
+    <section class="programme-section section-black" id="ifk">
+        <div class="container">
+            <div class="prog-header reveal">
+                <div class="prog-title-area">
+                    <span class="section-label">Programme 03</span>
+                    <div class="accent-line"></div>
+                    <span class="abbr">IFK/B4 — Annual County &amp; National Conferences</span>
+                    <h2>IFK/B4 <span class="text-gold">CONFERENCES</span></h2>
+                </div>
+                <div class="prog-num-badge" aria-hidden="true">03</div>
+            </div>
+            <div class="prog-body-grid reveal">
+                <div class="prog-body">
+                    <p class="prog-lead-text"><strong style="color:var(--white);">IFK</strong> stands for <em>"I'm for
+                            Kenya"</em> — and <strong style="color:var(--white);">B4</strong> stands for <em>"Building
+                            Bridges Bypassing Barriers."</em> Together, these conferences are KCW's most visible and
+                        impactful programme.</p>
+                    <p>Our county and national IFK/B4 annual conferences are a resounding voice of nationalism and
+                        patriotism at the grassroot level. Through these events, KCW provides objective advocacy for
+                        patriotic citizen participation towards nation-building — via uncensored, objective reporting on
+                        electoral justice, social justice, and economic justice.</p>
+                    <p>The conferences provide attendees with an opportunity to network, partner, and organize for
+                        change — bringing together citizens, civic leaders, faith community figures, and youth from
+                        across Kenya.</p>
+                    <p>In 2026, the national IFK/B4 Conference takes place at <strong
+                            style="color:var(--white);">Railway Golf Club, Nairobi</strong> — on <strong
+                            style="color:var(--white);">December 12th–13th</strong>.</p>
+                    <div class="conference-highlight" style="margin-top:28px;">
+                        <h4>NEXT NATIONAL CONFERENCE</h4>
+                        <p>IFK/B4 National Conference 2026 — County 047 Nairobi</p>
+                        <div class="conf-stat">
+                            <div class="conf-stat-item">
+                                <div class="cs-num">Dec 12–13</div>
+                                <div class="cs-label">2026</div>
+                            </div>
+                            <div class="conf-stat-item">
+                                <div class="cs-num">047</div>
+                                <div class="cs-label">Nairobi County</div>
+                            </div>
+                            <div class="conf-stat-item">
+                                <div class="cs-num">Railway<br>Golf Club</div>
+                                <div class="cs-label">Venue</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="btn-group" style="margin-top:28px;">
+                        <a href="community.html#tickets" class="btn btn-gold">Buy a Conference Ticket</a>
+                    </div>
+                </div>
+                <div class="prog-sidebar">
+                    <div class="prog-sidebar-header">
+                        <h4>CONFERENCE FACTS</h4>
+                    </div>
+                    <div class="prog-sidebar-body">
+                        <ul>
+                            <li>49 conferences annually across Kenya</li>
+                            <li>47 county-level IFK/B4 events</li>
+                            <li>1 national IFK/B4 conference per year</li>
+                            <li>Open to all Kenyan citizens</li>
+                            <li>Networking and partnership opportunities</li>
+                            <li>Awards for outstanding local initiatives</li>
+                            <li>Video upload and showcase platform</li>
+                            <li>Top initiatives recognized nationally</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ PROGRAMME 4: DCCAME ═══ -->
+    <section class="programme-section section-charcoal" id="dcca">
+        <div class="container">
+            <div class="prog-header reveal">
+                <div class="prog-title-area">
+                    <span class="section-label">Programme 04</span>
+                    <div class="accent-line"></div>
+                    <span class="abbr">DCCAME — DCCA Project Monitoring &amp; Evaluation</span>
+                    <h2>DCCA <span class="text-gold">PROJECT M&amp;E</span></h2>
+                </div>
+                <div class="prog-num-badge" aria-hidden="true">04</div>
+            </div>
+            <div class="prog-body-grid reveal">
+                <div class="prog-body">
+                    <p class="prog-lead-text">KCW appreciates the fact that Kenya has one of the best constitutions in
+                        East Africa. However, this constitution has gaps on matters of structural oversight that must be
+                        addressed to fully unlock Kenya's governance potential.</p>
+                    <p>For this reason, we advocate for our proposed <strong style="color:var(--white);">DCCA (Draft
+                            Constitutional and Consequential Amendment)</strong> — a set of reforms seeking to deliver
+                        better separation of powers, stronger independence for government agencies, and a policy
+                        environment that fosters economic prosperity for Kenyans at the bottom of the pyramid.</p>
+                    <p>KCW advocates for the DCCA to be executed via a <strong style="color:var(--white);">popular
+                            initiative from the grassroot</strong> — ensuring that constitutional reform is driven by
+                        the people, not political elites.</p>
+                    <div class="dcca-box" style="margin:28px 0;">
+                        <h4>WHY THE DCCA MATTERS</h4>
+                        <p>The current constitutional framework, while strong, leaves room for political interference in
+                            independent institutions, inadequate economic policy for the lowest-income Kenyans, and
+                            insufficient checks on executive and legislative overreach.</p>
+                        <p>DCCAME positions KCW as an active monitor and evaluator of this reform process — and of
+                            post-DCCA governance — to ensure accountability and follow-through on all commitments made
+                            to the Kenyan people.</p>
+                    </div>
+                    <div class="btn-group">
+                        <a href="contact.html" class="btn btn-gold">Learn More &amp; Engage</a>
+                        <a href="community.html" class="btn btn-outline">Sign Up to Volunteer</a>
+                    </div>
+                </div>
+                <div class="prog-sidebar">
+                    <div class="prog-sidebar-header">
+                        <h4>DCCA REFORM GOALS</h4>
+                    </div>
+                    <div class="prog-sidebar-body">
+                        <ul>
+                            <li>Better separation of powers between arms of government</li>
+                            <li>Strengthened independence of constitutional commissions</li>
+                            <li>Pro-poor economic policy environment</li>
+                            <li>Enhanced structural oversight mechanisms</li>
+                            <li>Popular initiative from grassroot citizens</li>
+                            <li>Active post-DCCA government monitoring</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ CTA ═══ -->
+    <div class="cta-banner">
+        <div class="container">
+            <h2>GET INVOLVED IN OUR PROGRAMMES</h2>
+            <p>Whether as a volunteer, a conference attendee, or a partner organisation — there's a place for you in
+                Kenya's transformation.</p>
+            <div class="btn-group">
+                <a href="community.html" class="btn btn-dark">Join the Community</a>
+                <a href="contact.html" class="btn btn-dark">Contact Us</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══ FOOTER ═══ -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <div class="footer-logo-badge">KCW</div>
+                        <div>
+                            <div class="org">Kenya Cannot Wait</div>
+                            <div
+                                style="font-size:11px;color:var(--grey);letter-spacing:0.12em;text-transform:uppercase;">
+                                One People · One Cake · One Faith</div>
+                        </div>
+                    </div>
+                    <p>A peoples' driven sociopolitical movement for social justice, good governance, and electoral
+                        reform in Kenya.</p>
+                    <div class="footer-social" style="margin-top:20px;">
+                        <a href="#" aria-label="Facebook">f</a>
+                        <a href="#" aria-label="Twitter/X">𝕏</a>
+                        <a href="#" aria-label="YouTube">▶</a>
+                        <a href="#" aria-label="WhatsApp">✉</a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h5>Navigation</h5>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="programmes.html">Programmes</a></li>
+                        <li><a href="community.html">Community</a></li>
+                        <li><a href="donate.html">Give &amp; Partner</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Programmes</h5>
+                    <ul>
+                        <li><a href="#ppd">Public Policy Debates</a></li>
+                        <li><a href="#gpcs">Political Consultancy</a></li>
+                        <li><a href="#ifk">IFK/B4 Conferences</a></li>
+                        <li><a href="#dcca">DCCA Project M&amp;E</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Contact</h5>
+                    <ul>
+                        <li><a href="mailto:info@kcw.co.ke">info@kcw.co.ke</a></li>
+                        <li><a href="tel:+254000000000">+254 (0)00 000 0000</a></li>
+                        <li><a href="contact.html">Northlands, Nairobi</a></li>
+                        <li><a href="https://www.kcw.co.ke" target="_blank" rel="noopener">www.kcw.co.ke</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-divider"></div>
+            <div class="footer-bottom">
+                <p>© 2025 Kenya Cannot Wait. All rights reserved.</p>
+                <p class="tagline">ONE PEOPLE · ONE CAKE · ONE FAITH</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+
+</html>

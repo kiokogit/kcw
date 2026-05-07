@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="About Kenya Cannot Wait — Our vision, mission, core values, and the people driving change across Kenya's 47 counties.">
+    <title>About Us | Kenya Cannot Wait</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .mission-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2px;
+            background: rgba(255, 215, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .mission-cell {
+            background: var(--card);
+            padding: 48px 40px;
+        }
+
+        .mission-cell .cell-label {
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .mission-cell .cell-label::before {
+            content: '';
+            width: 20px;
+            height: 2px;
+            background: var(--gold);
+            flex-shrink: 0;
+        }
+
+        .mission-cell h3 {
+            font-family: var(--font-display);
+            font-size: clamp(22px, 3vw, 36px);
+            letter-spacing: 0.08em;
+            margin-bottom: 16px;
+        }
+
+        .mission-cell p {
+            font-size: 14px;
+            color: var(--grey);
+            line-height: 1.8;
+        }
+
+        .client-badge {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 24px 28px;
+            background: var(--card);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 8px;
+            transition: var(--transition);
+        }
+
+        .client-badge:hover {
+            border-color: rgba(255, 215, 0, 0.25);
+            transform: translateX(4px);
+        }
+
+        .client-num {
+            font-family: var(--font-display);
+            font-size: 32px;
+            color: var(--gold);
+            opacity: 0.4;
+            flex-shrink: 0;
+            width: 40px;
+        }
+
+        .client-badge h4 {
+            font-size: 15px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .client-badge p {
+            font-size: 13px;
+            color: var(--grey);
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 32px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 8px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--gold), rgba(255, 215, 0, 0.1));
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 36px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -28px;
+            top: 6px;
+            width: 10px;
+            height: 10px;
+            background: var(--gold);
+            border-radius: 50%;
+        }
+
+        .timeline-item .year {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            color: var(--gold);
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+
+        .timeline-item h4 {
+            font-size: 16px;
+            margin-bottom: 6px;
+        }
+
+        .timeline-item p {
+            font-size: 14px;
+            color: var(--grey);
+            line-height: 1.6;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ═══════════════════ NAVIGATION ═══════════════════ -->
+    <nav class="nav" role="navigation">
+        <div class="nav-inner">
+            <a href="index.html" class="nav-logo">
+                <div class="nav-logo-badge">KCW</div>
+                <div class="nav-logo-text">
+                    <span class="org-name">Kenya Cannot Wait</span>
+                    <span class="org-tagline">One People · One Cake · One Faith</span>
+                </div>
+            </a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link" data-page="index.html">Home</a>
+                <a href="about.html" class="nav-link" data-page="about.html">About</a>
+                <a href="programmes.html" class="nav-link" data-page="programmes.html">Programmes</a>
+                <a href="community.html" class="nav-link" data-page="community.html">Community</a>
+                <a href="contact.html" class="nav-link" data-page="contact.html">Contact</a>
+                <a href="donate.html" class="nav-link nav-cta" data-page="donate.html">Give &amp; Partner</a>
+            </div>
+            <button class="hamburger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+        </div>
+    </nav>
+    <div class="nav-mobile">
+        <a href="index.html" class="nav-link" data-page="index.html">Home</a>
+        <a href="about.html" class="nav-link" data-page="about.html">About Us</a>
+        <a href="programmes.html" class="nav-link" data-page="programmes.html">Programmes</a>
+        <a href="community.html" class="nav-link" data-page="community.html">Community</a>
+        <a href="contact.html" class="nav-link" data-page="contact.html">Contact</a>
+        <a href="donate.html" class="nav-link nav-cta" data-page="donate.html">Give &amp; Partner</a>
+    </div>
+
+    <!-- ═══════════════════ PAGE HERO ═══════════════════ -->
+    <section class="page-hero section-dark">
+        <div class="page-hero-watermark" aria-hidden="true">KCW</div>
+        <div class="container">
+            <div class="breadcrumb"><span>About Us</span></div>
+            <h1 class="display">ABOUT <span class="text-gold">KCW</span></h1>
+            <p>Discover the movement, the mission, the people, and the values behind Kenya Cannot Wait.</p>
+        </div>
+    </section>
+
+    <!-- ═══════════════════ ABOUT KCW ═══════════════════ -->
+    <section class="section section-black" aria-labelledby="about-who">
+        <div class="container">
+            <div class="grid-2" style="gap:70px;align-items:start;">
+                <div class="reveal">
+                    <span class="section-label">Who We Are</span>
+                    <div class="accent-line"></div>
+                    <h2 id="about-who" class="display"
+                        style="font-size:clamp(30px,4vw,50px);letter-spacing:0.06em;margin-bottom:24px;">
+                        KENYA CANNOT WAIT <span class="text-gold">(KCW)</span>
+                    </h2>
+                    <p style="color:var(--silver);font-size:15px;line-height:1.8;margin-bottom:16px;">
+                        KCW is a peoples' driven sociopolitical movement and organization seeking to catalyze citizen
+                        participation on matters of social justice, good governance, and faith.
+                    </p>
+                    <p style="color:var(--silver);font-size:15px;line-height:1.8;margin-bottom:16px;">
+                        We achieve this through advocacy of ethical governance via Public Policy Debates (PPDs), better
+                        structural oversight via our DCCA initiative, and youth candidacy in national and general
+                        elective contests by providing political consultancy services.
+                    </p>
+                    <p style="color:var(--grey);font-size:14px;line-height:1.8;">
+                        Active across all 47 Kenyan counties, KCW mobilizes citizens at the grassroot level — because
+                        meaningful change begins with informed, empowered communities.
+                    </p>
+                </div>
+                <div class="reveal reveal-delay-2">
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="year">Our Foundation</div>
+                            <h4>Born from Necessity</h4>
+                            <p>KCW was founded in response to persistent systemic gaps in Kenya's governance — social,
+                                economic, and electoral — that continue to affect millions of citizens daily.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="year">Our Approach</div>
+                            <h4>Grassroot Mobilization</h4>
+                            <p>We believe real change flows from the bottom up. Through county conferences, debates, and
+                                consultancy, we equip citizens and leaders to be agents of transformation.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="year">Our Goal</div>
+                            <h4>A New Kenya by 2035</h4>
+                            <p>Our long-term vision culminates in a Kenya where justice, prosperity, and fair elections
+                                are not aspirations — they are lived realities for every citizen.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════ VISION & MISSION ═══════════════════ -->
+    <section class="section section-charcoal" aria-labelledby="vision-mission">
+        <div class="container">
+            <div class="text-center mb-40 reveal">
+                <span class="section-label">Our Direction</span>
+                <div class="accent-line center"></div>
+                <h2 id="vision-mission" class="display" style="font-size:clamp(28px,4vw,52px);letter-spacing:0.06em;">
+                    VISION &amp; <span class="text-gold">MISSION</span>
+                </h2>
+            </div>
+            <div class="mission-grid reveal">
+                <div class="mission-cell">
+                    <div class="cell-label">Our Vision</div>
+                    <h3>A NEW KENYA WITH THREE IDENTITIES</h3>
+                    <p style="margin-bottom:18px;">A <strong style="color:var(--white);">just Kenya</strong> — equal
+                        application of the rule of law from the least to the greatest, building a cohesive, well-knit
+                        society free from social discrimination.</p>
+                    <p style="margin-bottom:18px;">A <strong style="color:var(--white);">prosperous Kenya</strong> —
+                        where all who wish to work find meaningful employment, and local investors can thrive in a
+                        supportive economic environment.</p>
+                    <p>A <strong style="color:var(--white);">transparent Kenya</strong> — where election tallying
+                        streams live on voters' mobile handsets, delivering uncontested results that every Kenyan can
+                        trust.</p>
+                </div>
+                <div class="mission-cell">
+                    <div class="cell-label">Our Mission</div>
+                    <h3>PROMOTE, ADVOCATE, AND BUILD</h3>
+                    <p style="margin-bottom:18px;">To promote <strong style="color:var(--white);">social
+                            justice</strong>, <strong style="color:var(--white);">good governance</strong>, and <strong
+                            style="color:var(--white);">spiritual virtue</strong> through structured civic education,
+                        strategic partnerships, and mass citizen engagement.</p>
+                    <p style="margin-bottom:18px;">To drive youth candidacy in elective politics through our Grassroot
+                        Political Consultancy Services — equipping a new generation of ethical leaders.</p>
+                    <p>To host our signature IFK/B4 annual county and national conferences, convening Kenya's citizens
+                        around shared national values and aspirations.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════ CORE VALUES ═══════════════════ -->
+    <section class="section section-dark" aria-labelledby="values-title">
+        <div class="container">
+            <div class="text-center mb-40 reveal">
+                <span class="section-label">What Drives Us</span>
+                <div class="accent-line center wide"></div>
+                <h2 id="values-title" class="display" style="font-size:clamp(28px,4vw,52px);letter-spacing:0.06em;">
+                    OUR CORE <span class="text-gold">VALUES</span>
+                </h2>
+            </div>
+            <div class="grid-4">
+                <div class="value-card reveal">
+                    <span class="value-icon">⚖️</span>
+                    <h4>Social Justice</h4>
+                    <p>Equal rights, dignity, and rule of law for every Kenyan — regardless of social rank, tribe, or
+                        background.</p>
+                </div>
+                <div class="value-card reveal reveal-delay-1">
+                    <span class="value-icon">🏛️</span>
+                    <h4>Good Governance</h4>
+                    <p>Accountable, transparent, and ethical leadership at every level of public office across all 47
+                        counties.</p>
+                </div>
+                <div class="value-card reveal reveal-delay-2">
+                    <span class="value-icon">🗳️</span>
+                    <h4>Electoral Justice &amp; Inclusion</h4>
+                    <p>Fair, credible elections with full citizen inclusion — especially youth and underrepresented
+                        communities.</p>
+                </div>
+                <div class="value-card reveal reveal-delay-3">
+                    <span class="value-icon">💼</span>
+                    <h4>Economic Justice</h4>
+                    <p>A thriving Kenyan economy that creates real opportunity for every household, not just the
+                        privileged few.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════ WHO WE SERVE ═══════════════════ -->
+    <section class="section section-black" aria-labelledby="clients-title">
+        <div class="container">
+            <div class="grid-2" style="gap:60px;align-items:start;">
+                <div class="reveal">
+                    <span class="section-label">Who We Serve</span>
+                    <div class="accent-line"></div>
+                    <h2 id="clients-title" class="display"
+                        style="font-size:clamp(28px,4vw,50px);letter-spacing:0.06em;margin-bottom:32px;">
+                        OUR <span class="text-gold">CLIENTS</span> &amp; COMMUNITY
+                    </h2>
+                    <div style="display:flex;flex-direction:column;gap:16px;">
+                        <div class="client-badge">
+                            <div class="client-num">01</div>
+                            <div>
+                                <h4>Civic &amp; Political Leaders</h4>
+                                <p>Elected officials, candidates, and civic figures seeking policy guidance, political
+                                    consultancy, and governance capacity-building.</p>
+                            </div>
+                        </div>
+                        <div class="client-badge">
+                            <div class="client-num">02</div>
+                            <div>
+                                <h4>Faith Community Leaders</h4>
+                                <p>Pastors, imams, and religious figures who understand that spiritual virtue and civic
+                                    responsibility are inseparable in building the new Kenya.</p>
+                            </div>
+                        </div>
+                        <div class="client-badge">
+                            <div class="client-num">03</div>
+                            <div>
+                                <h4>KCW Citizens — Grassroot Kenya</h4>
+                                <p>Ordinary Kenyans at the grassroot level — our most important constituency — who carry
+                                    the real power to demand and drive change.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="reveal reveal-delay-2">
+                    <div class="quote-block" style="margin-bottom:32px;">
+                        <p>We are not a political party. We are the conscience of the nation — a movement that holds
+                            power accountable and lifts the voice of the people.</p>
+                        <cite>— KCW, Core Statement</cite>
+                    </div>
+                    <div
+                        style="background:var(--card);border:1px solid rgba(255,255,255,0.06);border-radius:8px;padding:36px;">
+                        <h4
+                            style="font-family:var(--font-display);font-size:22px;letter-spacing:0.08em;margin-bottom:20px;color:var(--gold);">
+                            PROGRAMME PILLARS AT A GLANCE</h4>
+                        <div style="display:flex;flex-direction:column;gap:12px;">
+                            <div style="display:flex;gap:12px;align-items:center;">
+                                <span
+                                    style="color:var(--gold);font-weight:700;font-size:13px;flex-shrink:0;width:36px;">PPD</span>
+                                <span style="font-size:14px;color:var(--silver);">Public Policy Debates</span>
+                            </div>
+                            <div style="display:flex;gap:12px;align-items:center;">
+                                <span
+                                    style="color:var(--gold);font-weight:700;font-size:13px;flex-shrink:0;width:36px;">GPCS</span>
+                                <span style="font-size:14px;color:var(--silver);">Grassroot Political Consultancy
+                                    Services</span>
+                            </div>
+                            <div style="display:flex;gap:12px;align-items:center;">
+                                <span
+                                    style="color:var(--gold);font-weight:700;font-size:13px;flex-shrink:0;width:36px;">IFK</span>
+                                <span style="font-size:14px;color:var(--silver);">IFK/B4 Annual County &amp; National
+                                    Conferences</span>
+                            </div>
+                            <div style="display:flex;gap:12px;align-items:center;">
+                                <span
+                                    style="color:var(--gold);font-weight:700;font-size:13px;flex-shrink:0;width:36px;">DCCA</span>
+                                <span style="font-size:14px;color:var(--silver);">DCCA Project Monitoring &amp;
+                                    Evaluation</span>
+                            </div>
+                        </div>
+                        <a href="programmes.html" class="btn btn-gold" style="margin-top:28px;">
+                            Explore Our Programmes →
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════ FOUNDER SECTION ═══════════════════ -->
+    <section class="section section-charcoal" aria-labelledby="founder-title">
+        <div class="container">
+            <div class="text-center mb-40 reveal">
+                <span class="section-label">Leadership</span>
+                <div class="accent-line center"></div>
+                <h2 id="founder-title" class="display" style="font-size:clamp(28px,4vw,52px);letter-spacing:0.06em;">
+                    MEET THE <span class="text-gold">FOUNDER</span>
+                </h2>
+            </div>
+            <div class="founder-card reveal">
+                <div class="founder-img-wrap">
+                    <img src="images/founder.jpeg" alt="Mabonga C Mabonga, Founder of Kenya Cannot Wait">
+                    <div class="founder-name-tag">
+                        <span class="name">Mabonga C Mabonga</span>
+                        <span class="title">Founder &amp; National Coordinator</span>
+                    </div>
+                </div>
+                <div class="founder-info">
+                    <span class="section-label">About the Founder</span>
+                    <div class="accent-line"></div>
+                    <h2 class="display"
+                        style="font-size:clamp(28px,3.5vw,46px);letter-spacing:0.06em;margin-bottom:20px;">
+                        MABONGA C <span class="text-gold">MABONGA</span>
+                    </h2>
+                    <p>Mabonga C Mabonga is the founding visionary behind Kenya Cannot Wait — a passionate advocate for
+                        social justice, ethical governance, and citizen empowerment across Kenya's 47 counties.</p>
+                    <p>Driven by a deep conviction that Kenya's transformation requires urgent, structured action from
+                        the grassroot level up, Mabonga established KCW as a vehicle to mobilize citizens, challenge
+                        power structures, and hold elected leaders accountable through constitutional and civic means.
+                    </p>
+                    <p>His work spans public policy advocacy, political consultancy, and the design of the IFK/B4
+                        conference model — a unique platform that gives ordinary Kenyans a seat at the national
+                        conversation on governance and prosperity.</p>
+                    <div class="quote-block" style="margin:28px 0;">
+                        <p>Every Kenyan deserves justice — not as a privilege, but as a right. That is the heartbeat of
+                            Kenya Cannot Wait.</p>
+                        <cite>— Mabonga C Mabonga</cite>
+                    </div>
+                    <div class="btn-group">
+                        <a href="contact.html" class="btn btn-gold">Contact Us</a>
+                        <a href="community.html" class="btn btn-outline">Join the Movement</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════ CTA ═══════════════════ -->
+    <div class="cta-banner">
+        <div class="container">
+            <h2>READY TO MAKE A DIFFERENCE?</h2>
+            <p>Join KCW's growing community of Kenyans committed to justice, good governance, and a better future for
+                all.</p>
+            <div class="btn-group">
+                <a href="community.html" class="btn btn-dark">Join Our Community</a>
+                <a href="donate.html" class="btn btn-dark">Support Our Work</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════════════ FOOTER ═══════════════════ -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <div class="footer-logo-badge">KCW</div>
+                        <div>
+                            <div class="org">Kenya Cannot Wait</div>
+                            <div
+                                style="font-size:11px;color:var(--grey);letter-spacing:0.12em;text-transform:uppercase;">
+                                One People · One Cake · One Faith</div>
+                        </div>
+                    </div>
+                    <p>A peoples' driven sociopolitical movement for social justice, good governance, and electoral
+                        reform in Kenya.</p>
+                    <div class="footer-social" style="margin-top:20px;">
+                        <a href="#" aria-label="Facebook">f</a>
+                        <a href="#" aria-label="Twitter/X">𝕏</a>
+                        <a href="#" aria-label="YouTube">▶</a>
+                        <a href="#" aria-label="WhatsApp">✉</a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h5>Navigation</h5>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="programmes.html">Programmes</a></li>
+                        <li><a href="community.html">Community</a></li>
+                        <li><a href="donate.html">Give &amp; Partner</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Programmes</h5>
+                    <ul>
+                        <li><a href="programmes.html">Public Policy Debates</a></li>
+                        <li><a href="programmes.html">Political Consultancy</a></li>
+                        <li><a href="programmes.html">IFK/B4 Conferences</a></li>
+                        <li><a href="programmes.html">DCCA Project M&amp;E</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Contact</h5>
+                    <ul>
+                        <li><a href="mailto:info@kcw.co.ke">info@kcw.co.ke</a></li>
+                        <li><a href="tel:+254000000000">+254 (0)00 000 0000</a></li>
+                        <li><a href="contact.html">Northlands, Nairobi</a></li>
+                        <li><a href="https://www.kcw.co.ke" target="_blank" rel="noopener">www.kcw.co.ke</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-divider"></div>
+            <div class="footer-bottom">
+                <p>© 2025 Kenya Cannot Wait. All rights reserved.</p>
+                <p class="tagline">ONE PEOPLE · ONE CAKE · ONE FAITH</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Join the KCW IFK/B4 Community — volunteer, buy conference tickets, upload videos, and become part of Kenya's grassroot movement.">
+    <title>Community | Kenya Cannot Wait</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .community-tabs {
+            display: flex;
+            gap: 4px;
+            background: var(--card);
+            padding: 6px;
+            border-radius: 10px;
+            margin-bottom: 48px;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            flex: 1;
+            min-width: 140px;
+            padding: 12px 20px;
+            background: transparent;
+            border: none;
+            border-radius: 8px;
+            font-family: var(--font-body);
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--grey);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .tab-btn:hover {
+            color: var(--white);
+            background: rgba(255, 255, 255, 0.06);
+        }
+
+        .tab-btn.active {
+            background: var(--gold);
+            color: var(--black);
+        }
+
+        .tab-panel {
+            display: none;
+        }
+
+        .tab-panel.active {
+            display: block;
+        }
+
+        .privilege-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 20px;
+            margin-top: 28px;
+        }
+
+        .privilege-item {
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+            background: var(--card);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 8px;
+            padding: 20px;
+            transition: var(--transition);
+        }
+
+        .privilege-item:hover {
+            border-color: rgba(255, 215, 0, 0.25);
+        }
+
+        .privilege-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 215, 0, 0.1);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            flex-shrink: 0;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+        }
+
+        .privilege-item h4 {
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .privilege-item p {
+            font-size: 13px;
+            color: var(--grey);
+            line-height: 1.5;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        .skill-tag {
+            padding: 6px 14px;
+            background: rgba(255, 215, 0, 0.08);
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            border-radius: 100px;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--gold);
+        }
+
+        .conf-table-wrapper {
+            overflow-x: auto;
+        }
+
+        .conference-note {
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+            background: rgba(255, 215, 0, 0.06);
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            border-radius: 8px;
+            padding: 16px 20px;
+            margin-bottom: 24px;
+            font-size: 14px;
+            color: var(--silver);
+        }
+
+        .conference-note::before {
+            content: 'ℹ';
+            color: var(--gold);
+            font-weight: 700;
+            flex-shrink: 0;
+            font-size: 16px;
+        }
+
+        .upload-zone {
+            border: 2px dashed rgba(255, 215, 0, 0.3);
+            border-radius: 8px;
+            padding: 40px;
+            text-align: center;
+            background: rgba(255, 215, 0, 0.02);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .upload-zone:hover {
+            border-color: var(--gold);
+            background: rgba(255, 215, 0, 0.05);
+        }
+
+        .upload-zone .upload-icon {
+            font-size: 40px;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .upload-zone h4 {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .upload-zone p {
+            font-size: 14px;
+            color: var(--grey);
+        }
+
+        .topic-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 16px 0;
+        }
+
+        .topic-tag {
+            padding: 8px 16px;
+            background: var(--card);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 100px;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--silver);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .topic-tag:hover,
+        .topic-tag.selected {
+            border-color: var(--gold);
+            color: var(--gold);
+            background: rgba(255, 215, 0, 0.08);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ═══ NAVIGATION ═══ -->
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="index.html" class="nav-logo">
+                <div class="nav-logo-badge">KCW</div>
+                <div class="nav-logo-text">
+                    <span class="org-name">Kenya Cannot Wait</span>
+                    <span class="org-tagline">One People · One Cake · One Faith</span>
+                </div>
+            </a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link" data-page="index.html">Home</a>
+                <a href="about.html" class="nav-link" data-page="about.html">About</a>
+                <a href="programmes.html" class="nav-link" data-page="programmes.html">Programmes</a>
+                <a href="community.html" class="nav-link" data-page="community.html">Community</a>
+                <a href="contact.html" class="nav-link" data-page="contact.html">Contact</a>
+                <a href="donate.html" class="nav-link nav-cta" data-page="donate.html">Give &amp; Partner</a>
+            </div>
+            <button class="hamburger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+        </div>
+    </nav>
+    <div class="nav-mobile">
+        <a href="index.html" class="nav-link" data-page="index.html">Home</a>
+        <a href="about.html" class="nav-link" data-page="about.html">About Us</a>
+        <a href="programmes.html" class="nav-link" data-page="programmes.html">Programmes</a>
+        <a href="community.html" class="nav-link" data-page="community.html">Community</a>
+        <a href="contact.html" class="nav-link" data-page="contact.html">Contact</a>
+        <a href="donate.html" class="nav-link nav-cta" data-page="donate.html">Give &amp; Partner</a>
+    </div>
+
+    <!-- ═══ PAGE HERO ═══ -->
+    <section class="page-hero section-dark">
+        <div class="page-hero-watermark" aria-hidden="true">IFK</div>
+        <div class="container">
+            <div class="breadcrumb"><span>IFK/B4 Community</span></div>
+            <h1 class="display">JOIN THE <span class="text-gold">MOVEMENT</span></h1>
+            <p>Be part of Kenya's most vibrant civic community — join online, volunteer your skills, attend a
+                conference, or share your local initiative with the nation.</p>
+        </div>
+    </section>
+
+    <!-- ═══ COMMUNITY TABS ═══ -->
+    <section class="section section-black">
+        <div class="container">
+            <div class="community-tabs" role="tablist">
+                <button class="tab-btn active" role="tab" aria-selected="true" data-tab="join">🤝 Join Our
+                    Family</button>
+                <button class="tab-btn" role="tab" aria-selected="false" data-tab="volunteer">🙌 Volunteer</button>
+                <button class="tab-btn" role="tab" aria-selected="false" data-tab="tickets" id="tickets">🎟️ Conference
+                    Tickets</button>
+                <button class="tab-btn" role="tab" aria-selected="false" data-tab="upload">📹 Upload Video</button>
+            </div>
+
+            <!-- TAB 1: JOIN -->
+            <div class="tab-panel active" id="tab-join">
+                <div class="grid-2" style="gap:60px;align-items:start;">
+                    <div>
+                        <span class="section-label">IFK/B4 Online Family</span>
+                        <div class="accent-line"></div>
+                        <h2 class="display"
+                            style="font-size:clamp(26px,3.5vw,44px);letter-spacing:0.06em;margin-bottom:16px;">
+                            JOIN OUR <span class="text-gold">ONLINE FAMILY</span>
+                        </h2>
+                        <p style="color:var(--silver);font-size:15px;line-height:1.8;margin-bottom:24px;">
+                            We are glad to welcome you to become part of our online IFK/B4 family. Sign in as a family
+                            member and be at the heart of all that is happening around Kenya. Connect with thousands of
+                            Kenyans who share your values.
+                        </p>
+                        <h4
+                            style="font-size:14px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;">
+                            Member Privileges</h4>
+                        <div class="privilege-grid">
+                            <div class="privilege-item">
+                                <div class="privilege-icon">✍️</div>
+                                <div>
+                                    <h4>Post Articles</h4>
+                                    <p>Create and share posts or articles on policy issues and debates directly on our
+                                        platform.</p>
+                                </div>
+                            </div>
+                            <div class="privilege-item">
+                                <div class="privilege-icon">🎥</div>
+                                <div>
+                                    <h4>Post Videos</h4>
+                                    <p>Upload video clips on relevant policy issues and civic debates from your phone or
+                                        computer.</p>
+                                </div>
+                            </div>
+                            <div class="privilege-item">
+                                <div class="privilege-icon">🎤</div>
+                                <div>
+                                    <h4>Facilitate Conferences</h4>
+                                    <p>Become a facilitator at any of our IFK/B4 county and national conferences across
+                                        Kenya.</p>
+                                </div>
+                            </div>
+                            <div class="privilege-item">
+                                <div class="privilege-icon">🌍</div>
+                                <div>
+                                    <h4>National Network</h4>
+                                    <p>Connect with community members, civic leaders, and change-makers from all 47
+                                        counties.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div
+                            style="background:var(--card);border:1px solid rgba(255,255,255,0.06);border-radius:8px;padding:36px;">
+                            <h3
+                                style="font-family:var(--font-display);font-size:22px;letter-spacing:0.08em;margin-bottom:8px;">
+                                REGISTER AS A MEMBER</h3>
+                            <p style="font-size:13px;color:var(--grey);margin-bottom:28px;">All fields marked * are
+                                required.</p>
+                            <form data-validate>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="f-firstname">First Name *</label>
+                                        <input type="text" id="f-firstname" placeholder="Your first name" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="f-lastname">Last Name *</label>
+                                        <input type="text" id="f-lastname" placeholder="Your last name" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="f-email">Email Address *</label>
+                                    <input type="email" id="f-email" placeholder="you@email.com" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="f-phone">Phone / WhatsApp *</label>
+                                    <input type="tel" id="f-phone" placeholder="+254 700 000 000" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="f-birthday">Date of Birth *</label>
+                                    <input type="date" id="f-birthday" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="f-county">County of Residence *</label>
+                                    <select id="f-county" required>
+                                        <option value="">— Select your county —</option>
+                                        <option>001 — Mombasa</option>
+                                        <option>002 — Kwale</option>
+                                        <option>003 — Kilifi</option>
+                                        <option>004 — Tana River</option>
+                                        <option>005 — Lamu</option>
+                                        <option>006 — Taita Taveta</option>
+                                        <option>007 — Garissa</option>
+                                        <option>008 — Wajir</option>
+                                        <option>009 — Mandera</option>
+                                        <option>010 — Marsabit</option>
+                                        <option>011 — Isiolo</option>
+                                        <option>012 — Meru</option>
+                                        <option>013 — Tharaka Nithi</option>
+                                        <option>014 — Embu</option>
+                                        <option>015 — Kitui</option>
+                                        <option>016 — Machakos</option>
+                                        <option>017 — Makueni</option>
+                                        <option>018 — Nyandarua</option>
+                                        <option>019 — Nyeri</option>
+                                        <option>020 — Kirinyaga</option>
+                                        <option>021 — Murang'a</option>
+                                        <option>022 — Kiambu</option>
+                                        <option>023 — Turkana</option>
+                                        <option>024 — West Pokot</option>
+                                        <option>025 — Samburu</option>
+                                        <option>026 — Trans Nzoia</option>
+                                        <option>027 — Uasin Gishu</option>
+                                        <option>028 — Elgeyo Marakwet</option>
+                                        <option>029 — Nandi</option>
+                                        <option>030 — Baringo</option>
+                                        <option>031 — Laikipia</option>
+                                        <option>032 — Nakuru</option>
+                                        <option>033 — Narok</option>
+                                        <option>034 — Kajiado</option>
+                                        <option>035 — Kericho</option>
+                                        <option>036 — Bomet</option>
+                                        <option>037 — Kakamega</option>
+                                        <option>038 — Vihiga</option>
+                                        <option>039 — Bungoma</option>
+                                        <option>040 — Busia</option>
+                                        <option>041 — Siaya</option>
+                                        <option>042 — Kisumu</option>
+                                        <option>043 — Homa Bay</option>
+                                        <option>044 — Migori</option>
+                                        <option>045 — Kisii</option>
+                                        <option>046 — Nyamira</option>
+                                        <option>047 — Nairobi</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <div class="checkbox-group">
+                                        <input type="checkbox" id="f-agree" required>
+                                        <label for="f-agree">I agree to join the KCW IFK/B4 family and receive
+                                            communications from Kenya Cannot Wait.</label>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-gold"
+                                    style="width:100%;justify-content:center;margin-top:8px;">
+                                    Submit Registration
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 2: VOLUNTEER -->
+            <div class="tab-panel" id="tab-volunteer">
+                <div class="grid-2" style="gap:60px;align-items:start;">
+                    <div>
+                        <span class="section-label">Volunteer Your Time &amp; Skill</span>
+                        <div class="accent-line"></div>
+                        <h2 class="display"
+                            style="font-size:clamp(26px,3.5vw,44px);letter-spacing:0.06em;margin-bottom:16px;">
+                            GIVE YOUR <span class="text-gold">TIME &amp; TALENT</span>
+                        </h2>
+                        <p style="color:var(--silver);font-size:15px;line-height:1.8;margin-bottom:16px;">
+                            We at KCW value your time and skills deeply. Your time is irreplaceable — and therefore of
+                            immeasurable value to us. Do you have an hour, or several hours a week? You can direct that
+                            time towards creating positive change in Kenya.
+                        </p>
+                        <p style="color:var(--grey);font-size:14px;line-height:1.8;margin-bottom:24px;">
+                            Write to us and we shall guide you on how to engage. If you have a skill you would like to
+                            volunteer, you are equally welcome — every talent finds a home at KCW.
+                        </p>
+                        <h4
+                            style="font-size:14px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;">
+                            Skills We Need</h4>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Training &amp; Facilitation</span>
+                            <span class="skill-tag">Graphic Design</span>
+                            <span class="skill-tag">Web Development</span>
+                            <span class="skill-tag">Team Coordination</span>
+                            <span class="skill-tag">Team Leadership</span>
+                            <span class="skill-tag">Transcription</span>
+                            <span class="skill-tag">Photography</span>
+                            <span class="skill-tag">Videography</span>
+                            <span class="skill-tag">Social Media</span>
+                            <span class="skill-tag">Research &amp; Writing</span>
+                            <span class="skill-tag">Legal &amp; Policy</span>
+                            <span class="skill-tag">Logistics</span>
+                            <span class="skill-tag">Finance</span>
+                            <span class="skill-tag">Community Mobilization</span>
+                        </div>
+                    </div>
+                    <div>
+                        <div
+                            style="background:var(--card);border:1px solid rgba(255,255,255,0.06);border-radius:8px;padding:36px;">
+                            <h3
+                                style="font-family:var(--font-display);font-size:22px;letter-spacing:0.08em;margin-bottom:24px;">
+                                VOLUNTEER SIGN-UP</h3>
+                            <form data-validate>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="v-name">Full Name *</label>
+                                        <input type="text" id="v-name" placeholder="Your full name" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="v-email">Email *</label>
+                                        <input type="email" id="v-email" placeholder="you@email.com" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="v-phone">Phone / WhatsApp</label>
+                                    <input type="tel" id="v-phone" placeholder="+254 700 000 000">
+                                </div>
+                                <div class="form-group">
+                                    <label for="v-county">Your County</label>
+                                    <select id="v-county">
+                                        <option value="">— Select county —</option>
+                                        <option>047 — Nairobi</option>
+                                        <option>022 — Kiambu</option>
+                                        <option>042 — Kisumu</option>
+                                        <option>032 — Nakuru</option>
+                                        <option>001 — Mombasa</option>
+                                        <option>Other — I'll specify below</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="v-skill">Your Primary Skill *</label>
+                                    <input type="text" id="v-skill" placeholder="e.g. Graphic Design, Training, etc."
+                                        required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="v-hours">Hours Available Per Week</label>
+                                    <select id="v-hours">
+                                        <option>1–2 hours</option>
+                                        <option>3–5 hours</option>
+                                        <option>5–10 hours</option>
+                                        <option>10+ hours</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="v-message">Tell Us More</label>
+                                    <textarea id="v-message"
+                                        placeholder="What drives you to volunteer with KCW? What can you bring to the movement?"></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-gold" style="width:100%;justify-content:center;">
+                                    Submit Volunteer Application
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 3: TICKETS -->
+            <div class="tab-panel" id="tab-tickets">
+                <span class="section-label">IFK/B4 Conferences</span>
+                <div class="accent-line"></div>
+                <h2 class="display" style="font-size:clamp(26px,3.5vw,44px);letter-spacing:0.06em;margin-bottom:16px;">
+                    BUY YOUR <span class="text-gold">CONFERENCE TICKET</span>
+                </h2>
+                <p style="color:var(--silver);font-size:15px;line-height:1.8;max-width:700px;margin-bottom:32px;">
+                    KCW runs 49 different IFK/B4 conferences annually across Kenya — 47 county conferences and 2
+                    national events. Find a conference near you and buy your ticket online. These conferences provide a
+                    unique opportunity to network, partner, and organise for change.
+                </p>
+
+                <div class="conference-note">
+                    Dates and venues for county conferences will be published progressively throughout the year. Check
+                    back regularly or <a href="contact.html"
+                        style="color:var(--gold);text-decoration:underline;">contact us</a> to confirm schedules in your
+                    county.
+                </div>
+
+                <h4
+                    style="font-family:var(--font-display);font-size:20px;letter-spacing:0.08em;color:var(--gold);margin-bottom:16px;">
+                    NATIONAL CONFERENCE SCHEDULE</h4>
+                <div class="table-wrap mb-40">
+                    <table class="styled-table">
+                        <thead>
+                            <tr>
+                                <th>Year</th>
+                                <th>Dates</th>
+                                <th>County</th>
+                                <th>Venue</th>
+                                <th>Tickets</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>2026</td>
+                                <td>December 12–13</td>
+                                <td>047 — Nairobi</td>
+                                <td>Railway Golf Club</td>
+                                <td><a href="contact.html" class="btn btn-gold"
+                                        style="padding:8px 18px;font-size:11px;">Buy Ticket</a></td>
+                            </tr>
+                            <tr>
+                                <td>2027</td>
+                                <td>TBA</td>
+                                <td>Kisumu</td>
+                                <td>TBA</td>
+                                <td><span style="color:var(--grey);font-size:12px;">Coming Soon</span></td>
+                            </tr>
+                            <tr>
+                                <td>2028</td>
+                                <td>TBA</td>
+                                <td>Mombasa</td>
+                                <td>TBA</td>
+                                <td><span style="color:var(--grey);font-size:12px;">Coming Soon</span></td>
+                            </tr>
+                            <tr>
+                                <td>2029</td>
+                                <td>TBA</td>
+                                <td>Nakuru</td>
+                                <td>TBA</td>
+                                <td><span style="color:var(--grey);font-size:12px;">Coming Soon</span></td>
+                            </tr>
+                            <tr>
+                                <td>2030</td>
+                                <td>TBA</td>
+                                <td>Eldoret</td>
+                                <td>TBA</td>
+                                <td><span style="color:var(--grey);font-size:12px;">Coming Soon</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h4
+                    style="font-family:var(--font-display);font-size:20px;letter-spacing:0.08em;color:var(--gold);margin-bottom:16px;">
+                    REQUEST A COUNTY CONFERENCE TICKET</h4>
+                <div style="max-width:600px;">
+                    <div
+                        style="background:var(--card);border:1px solid rgba(255,255,255,0.06);border-radius:8px;padding:36px;">
+                        <form data-validate>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="t-name">Your Full Name *</label>
+                                    <input type="text" id="t-name" placeholder="Full name" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="t-email">Email *</label>
+                                    <input type="email" id="t-email" placeholder="you@email.com" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="t-phone">Phone / WhatsApp *</label>
+                                <input type="tel" id="t-phone" placeholder="+254 700 000 000" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="t-county">Preferred County Conference *</label>
+                                <select id="t-county" required>
+                                    <option value="">— Select county —</option>
+                                    <option>047 — Nairobi (National, Dec 12–13, 2026)</option>
+                                    <option>042 — Kisumu</option>
+                                    <option>001 — Mombasa</option>
+                                    <option>032 — Nakuru</option>
+                                    <option>027 — Uasin Gishu (Eldoret)</option>
+                                    <option>022 — Kiambu</option>
+                                    <option>Other</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="t-qty">Number of Tickets</label>
+                                <select id="t-qty">
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5+</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-gold" style="width:100%;justify-content:center;">
+                                Request Ticket
+                            </button>
+                            <p style="font-size:12px;color:var(--grey);margin-top:12px;text-align:center;">Our team will
+                                reach out with payment and confirmation details.</p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 4: UPLOAD VIDEO -->
+            <div class="tab-panel" id="tab-upload">
+                <div class="grid-2" style="gap:60px;align-items:start;">
+                    <div>
+                        <span class="section-label">Share Your Story</span>
+                        <div class="accent-line"></div>
+                        <h2 class="display"
+                            style="font-size:clamp(26px,3.5vw,44px);letter-spacing:0.06em;margin-bottom:16px;">
+                            UPLOAD A <span class="text-gold">VIDEO</span>
+                        </h2>
+                        <p style="color:var(--silver);font-size:15px;line-height:1.8;margin-bottom:16px;">
+                            KCW provides an opportunity for you to share a video of local initiatives you are
+                            undertaking to better your county and our country — directly from your phone or computer.
+                        </p>
+                        <p style="color:var(--grey);font-size:14px;line-height:1.8;margin-bottom:24px;">
+                            We would love to learn what you are doing to shape the New Kenya we envision at KCW. Share a
+                            WhatsApp or YouTube video link, or tell us about your initiative.
+                        </p>
+                        <div
+                            style="background:rgba(255,215,0,0.06);border:1px solid rgba(255,215,0,0.2);border-radius:8px;padding:24px;margin-bottom:24px;">
+                            <h4
+                                style="color:var(--gold);font-size:14px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:12px;">
+                                🏆 Top Initiatives Win Recognition</h4>
+                            <p style="font-size:14px;color:var(--silver);line-height:1.6;">Outstanding local initiatives
+                                receive recognition and awards during our national and county IFK/B4 conferences. Your
+                                work could inspire Kenya.</p>
+                        </div>
+                        <h4
+                            style="font-size:13px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;">
+                            Relevant Video Topics</h4>
+                        <div class="topic-tags">
+                            <span class="topic-tag">Social Justice</span>
+                            <span class="topic-tag">Electoral Reform</span>
+                            <span class="topic-tag">Economic Empowerment</span>
+                            <span class="topic-tag">Youth Leadership</span>
+                            <span class="topic-tag">Community Projects</span>
+                            <span class="topic-tag">Good Governance</span>
+                            <span class="topic-tag">Environmental Action</span>
+                            <span class="topic-tag">Women's Rights</span>
+                            <span class="topic-tag">Education</span>
+                            <span class="topic-tag">Agriculture</span>
+                        </div>
+                    </div>
+                    <div>
+                        <div
+                            style="background:var(--card);border:1px solid rgba(255,255,255,0.06);border-radius:8px;padding:36px;">
+                            <h3
+                                style="font-family:var(--font-display);font-size:22px;letter-spacing:0.08em;margin-bottom:24px;">
+                                SUBMIT YOUR VIDEO</h3>
+                            <form data-validate>
+                                <div class="form-group">
+                                    <label for="u-name">Your Full Name *</label>
+                                    <input type="text" id="u-name" placeholder="Your name" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="u-email">Email *</label>
+                                    <input type="email" id="u-email" placeholder="you@email.com" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="u-phone">Phone / WhatsApp</label>
+                                    <input type="tel" id="u-phone" placeholder="+254 700 000 000">
+                                </div>
+                                <div class="form-group">
+                                    <label for="u-county">Your County *</label>
+                                    <select id="u-county" required>
+                                        <option value="">— Select county —</option>
+                                        <option>047 — Nairobi</option>
+                                        <option>042 — Kisumu</option>
+                                        <option>032 — Nakuru</option>
+                                        <option>001 — Mombasa</option>
+                                        <option>Other</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="u-title">Initiative / Video Title *</label>
+                                    <input type="text" id="u-title" placeholder="e.g. Youth Clean-Up Drive Nairobi"
+                                        required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="u-link">YouTube or WhatsApp Video Link</label>
+                                    <input type="url" id="u-link" placeholder="https://youtube.com/watch?v=...">
+                                </div>
+                                <div class="form-group">
+                                    <label for="u-topic">Topic Category *</label>
+                                    <select id="u-topic" required>
+                                        <option value="">— Select a topic —</option>
+                                        <option>Social Justice</option>
+                                        <option>Electoral Reform</option>
+                                        <option>Economic Empowerment</option>
+                                        <option>Youth Leadership</option>
+                                        <option>Community Projects</option>
+                                        <option>Good Governance</option>
+                                        <option>Environmental Action</option>
+                                        <option>Other</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="u-description">Describe Your Initiative *</label>
+                                    <textarea id="u-description"
+                                        placeholder="Tell us about what you're doing in your community and why it matters..."
+                                        required></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-gold" style="width:100%;justify-content:center;">
+                                    Submit Video &amp; Initiative
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ═══ CTA ═══ -->
+    <div class="cta-banner">
+        <div class="container">
+            <h2>KENYA NEEDS YOU NOW</h2>
+            <p>Every Kenyan who stands up for justice brings us closer to the New Kenya we all deserve. Join the
+                movement today.</p>
+            <div class="btn-group">
+                <a href="donate.html" class="btn btn-dark">Support KCW Financially</a>
+                <a href="contact.html" class="btn btn-dark">Get in Touch</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══ FOOTER ═══ -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <div class="footer-logo-badge">KCW</div>
+                        <div>
+                            <div class="org">Kenya Cannot Wait</div>
+                            <div
+                                style="font-size:11px;color:var(--grey);letter-spacing:0.12em;text-transform:uppercase;">
+                                One People · One Cake · One Faith</div>
+                        </div>
+                    </div>
+                    <p>A peoples' driven sociopolitical movement for social justice, good governance, and electoral
+                        reform in Kenya.</p>
+                    <div class="footer-social" style="margin-top:20px;">
+                        <a href="#" aria-label="Facebook">f</a>
+                        <a href="#" aria-label="Twitter/X">𝕏</a>
+                        <a href="#" aria-label="YouTube">▶</a>
+                        <a href="#" aria-label="WhatsApp">✉</a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h5>Navigation</h5>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="programmes.html">Programmes</a></li>
+                        <li><a href="community.html">Community</a></li>
+                        <li><a href="donate.html">Give &amp; Partner</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Community</h5>
+                    <ul>
+                        <li><a href="community.html">Join Our Family</a></li>
+                        <li><a href="community.html">Volunteer</a></li>
+                        <li><a href="community.html">Conference Tickets</a></li>
+                        <li><a href="community.html">Upload a Video</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Contact</h5>
+                    <ul>
+                        <li><a href="mailto:info@kcw.co.ke">info@kcw.co.ke</a></li>
+                        <li><a href="tel:+254000000000">+254 (0)00 000 0000</a></li>
+                        <li><a href="contact.html">Northlands, Nairobi</a></li>
+                        <li><a href="https://www.kcw.co.ke" target="_blank" rel="noopener">www.kcw.co.ke</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-divider"></div>
+            <div class="footer-bottom">
+                <p>© 2025 Kenya Cannot Wait. All rights reserved.</p>
+                <p class="tagline">ONE PEOPLE · ONE CAKE · ONE FAITH</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        // Tab functionality
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        const tabPanels = document.querySelectorAll('.tab-panel');
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const target = btn.getAttribute('data-tab');
+                tabBtns.forEach(b => { b.classList.remove('active'); b.setAttribute('aria-selected', 'false'); });
+                tabPanels.forEach(p => p.classList.remove('active'));
+                btn.classList.add('active');
+                btn.setAttribute('aria-selected', 'true');
+                document.getElementById('tab-' + target).classList.add('active');
+                // Re-trigger reveals
+                document.querySelectorAll('#tab-' + target + ' .reveal').forEach(el => el.classList.add('visible'));
+            });
+        });
+        // Handle direct link to tickets tab
+        if (window.location.hash === '#tickets') {
+            document.querySelector('[data-tab="tickets"]').click();
+        }
+    </script>
+</body>
+
+</html>

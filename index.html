@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Kenya Cannot Wait — A peoples' driven sociopolitical movement seeking social justice, good governance, and electoral reform for a prosperous Kenya.">
+    <title>Kenya Cannot Wait | One People · One Cake · One Faith</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* ── HOME-PAGE SPECIFIC STYLES ── */
+
+        /* HERO */
+        .hero {
+            min-height: 100vh;
+            background: #000;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            padding-top: var(--nav-h);
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 80% 60% at 70% 50%, rgba(0, 45, 110, 0.18) 0%, transparent 70%),
+                radial-gradient(ellipse 50% 80% at 0% 100%, rgba(178, 0, 0, 0.08) 0%, transparent 60%);
+        }
+
+        /* Kenya map silhouette - CSS polygon approximation */
+        .hero-map {
+            position: absolute;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            width: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            pointer-events: none;
+        }
+
+        .hero-map svg {
+            width: 100%;
+            height: 100%;
+            opacity: 0.095;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            padding: 80px 0;
+        }
+
+        .hero-eyebrow {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 20px;
+        }
+
+        .hero-eyebrow-line {
+            width: 50px;
+            height: 2px;
+            background: var(--gold);
+        }
+
+        .hero-eyebrow span {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--gold);
+        }
+
+        .hero h1 {
+            font-family: var(--font-display);
+            font-size: clamp(56px, 10vw, 130px);
+            letter-spacing: 0.04em;
+            line-height: 0.95;
+            margin-bottom: 28px;
+        }
+
+        .hero h1 em {
+            display: block;
+            font-style: normal;
+            color: var(--gold);
+        }
+
+        .hero-tagline {
+            font-size: clamp(14px, 2vw, 18px);
+            color: rgba(255, 255, 255, 0.55);
+            font-weight: 400;
+            letter-spacing: 0.08em;
+            margin-bottom: 14px;
+            font-family: var(--font-body);
+        }
+
+        .hero-tag-divider {
+            display: inline-block;
+            width: 1px;
+            height: 12px;
+            background: rgba(255, 215, 0, 0.4);
+            margin: 0 10px;
+            vertical-align: middle;
+        }
+
+        .hero-desc {
+            font-size: clamp(14px, 1.8vw, 17px);
+            color: var(--silver);
+            max-width: 520px;
+            line-height: 1.7;
+            margin-bottom: 44px;
+            font-weight: 300;
+        }
+
+        .hero-scroll {
+            position: absolute;
+            bottom: 32px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            z-index: 2;
+        }
+
+        .hero-scroll span {
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--grey);
+        }
+
+        .scroll-line {
+            width: 1px;
+            height: 48px;
+            background: linear-gradient(to bottom, var(--gold), transparent);
+            animation: scrollPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes scrollPulse {
+
+            0%,
+            100% {
+                opacity: 0.3;
+                transform: scaleY(1);
+            }
+
+            50% {
+                opacity: 1;
+                transform: scaleY(1.2);
+            }
+        }
+
+        /* ── VISION PILLARS ── */
+        .pillar-card {
+            padding: 44px 36px;
+            background: var(--card);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 8px;
+            position: relative;
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .pillar-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+        }
+
+        .pillar-card.social::before {
+            background: var(--gold);
+        }
+
+        .pillar-card.economic::before {
+            background: var(--blue);
+        }
+
+        .pillar-card.electoral::before {
+            background: var(--red);
+        }
+
+        .pillar-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6);
+        }
+
+        .pillar-number {
+            font-family: var(--font-display);
+            font-size: 72px;
+            line-height: 1;
+            position: absolute;
+            right: 24px;
+            top: 20px;
+            color: rgba(255, 255, 255, 0.04);
+            letter-spacing: 0.05em;
+        }
+
+        .pillar-icon {
+            font-size: 32px;
+            margin-bottom: 18px;
+            display: block;
+        }
+
+        .pillar-card h3 {
+            font-family: var(--font-display);
+            font-size: 26px;
+            letter-spacing: 0.08em;
+            color: var(--gold);
+            margin-bottom: 14px;
+        }
+
+        .pillar-card p {
+            font-size: 14px;
+            color: var(--grey);
+            line-height: 1.7;
+        }
+
+        /* ── ABOUT TEASER ── */
+        .about-teaser-img {
+            position: relative;
+        }
+
+        .about-teaser-img img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            object-position: top;
+            border-radius: 8px;
+            filter: grayscale(20%);
+        }
+
+        .about-teaser-img::before {
+            content: '';
+            position: absolute;
+            inset: -12px -12px 12px 12px;
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            border-radius: 8px;
+            z-index: 0;
+        }
+
+        .about-teaser-img::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent 40%);
+            border-radius: 8px;
+        }
+
+        .about-teaser-img img {
+            position: relative;
+            z-index: 1;
+        }
+
+        .about-teaser-text h2 {
+            font-family: var(--font-display);
+            font-size: clamp(32px, 4.5vw, 58px);
+            letter-spacing: 0.06em;
+            line-height: 1;
+            margin-bottom: 20px;
+        }
+
+        .about-teaser-text p {
+            font-size: 15px;
+            color: var(--silver);
+            line-height: 1.8;
+            margin-bottom: 16px;
+        }
+
+        /* ── PROGRAMME TEASERS ── */
+        .prog-teaser {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            padding: 24px;
+            background: var(--card);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            transition: var(--transition);
+        }
+
+        .prog-teaser:hover {
+            border-color: rgba(255, 215, 0, 0.2);
+            transform: translateY(-3px);
+        }
+
+        .prog-teaser-num {
+            font-family: var(--font-display);
+            font-size: 36px;
+            color: var(--gold);
+            opacity: 0.5;
+            line-height: 1;
+            flex-shrink: 0;
+            padding-top: 4px;
+        }
+
+        .prog-teaser h4 {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .prog-teaser p {
+            font-size: 13px;
+            color: var(--grey);
+            line-height: 1.6;
+        }
+
+        /* ── MARQUEE TICKER ── */
+        .ticker {
+            background: var(--gold);
+            overflow: hidden;
+            padding: 12px 0;
+            white-space: nowrap;
+        }
+
+        .ticker-inner {
+            display: inline-flex;
+            animation: ticker 28s linear infinite;
+        }
+
+        .ticker-item {
+            font-family: var(--font-display);
+            font-size: 15px;
+            letter-spacing: 0.15em;
+            color: var(--black);
+            padding: 0 32px;
+            display: inline-flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .ticker-item::after {
+            content: '◆';
+            font-size: 8px;
+            opacity: 0.4;
+        }
+
+        @keyframes ticker {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ═══════════════════ NAVIGATION ═══════════════════ -->
+    <nav class="nav" role="navigation" aria-label="Main navigation">
+        <div class="nav-inner">
+            <a href="index.html" class="nav-logo" aria-label="Kenya Cannot Wait Home">
+                <div class="nav-logo-badge">KCW</div>
+                <div class="nav-logo-text">
+                    <span class="org-name">Kenya Cannot Wait</span>
+                    <span class="org-tagline">One People · One Cake · One Faith</span>
+                </div>
+            </a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link" data-page="index.html">Home</a>
+                <a href="about.html" class="nav-link" data-page="about.html">About</a>
+                <a href="programmes.html" class="nav-link" data-page="programmes.html">Programmes</a>
+                <a href="community.html" class="nav-link" data-page="community.html">Community</a>
+                <a href="contact.html" class="nav-link" data-page="contact.html">Contact</a>
+                <a href="donate.html" class="nav-link nav-cta" data-page="donate.html">Give &amp; Partner</a>
+            </div>
+            <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+    <!-- Mobile Nav -->
+    <div class="nav-mobile" role="dialog" aria-label="Mobile navigation">
+        <a href="index.html" class="nav-link" data-page="index.html">Home</a>
+        <a href="about.html" class="nav-link" data-page="about.html">About Us</a>
+        <a href="programmes.html" class="nav-link" data-page="programmes.html">Programmes</a>
+        <a href="community.html" class="nav-link" data-page="community.html">Community</a>
+        <a href="contact.html" class="nav-link" data-page="contact.html">Contact</a>
+        <a href="donate.html" class="nav-link nav-cta" data-page="donate.html">Give &amp; Partner</a>
+    </div>
+
+    <!-- ═══════════════════ HERO ═══════════════════ -->
+    <section class="hero" aria-label="Hero banner">
+        <div class="hero-bg"></div>
+        <div class="hero-map" aria-hidden="true">
+            <!-- Simplified Kenya map SVG outline -->
+            <img 
+                src="images/kenya.webp"
+                alt="Map of Kenya"
+                width="550"
+                style="filter: brightness(0.3) var(--kenya-map-filter, sepia(1) hue-rotate(35deg) saturate(2) brightness(1.2));"
+                />
+            <!-- 
+                To change the map color, adjust --kenya-map-filter in CSS.
+                Example: 
+                  .hero-map img { --kenya-map-filter: sepia(1) hue-rotate(90deg) saturate(8) brightness(1.2); }
+                This allows colorization without needing a new image.
+            -->
+     
+        </div>
+        <div class="container" style="width:100%;">
+            <div class="hero-content" style="max-width:700px;">
+                <div class="hero-eyebrow">
+                    <div class="hero-eyebrow-line"></div>
+                    <span>Nairobi, Kenya · Est. 2024</span>
+                </div>
+                <h1>
+                    KENYA
+                    <em>CANNOT</em>
+                    WAIT
+                </h1>
+                <p class="hero-tagline">
+                    One People <span class="hero-tag-divider"></span>
+                    One Cake <span class="hero-tag-divider"></span>
+                    One Faith
+                </p>
+                <p class="hero-desc">
+                    A peoples' driven sociopolitical movement catalyzing citizen participation in social justice, good
+                    governance, and electoral reform — building the New Kenya we envision for all.
+                </p>
+                <div class="btn-group">
+                    <a href="about.html" class="btn btn-gold">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                            <path d="M5 12h14M12 5l7 7-7 7" />
+                        </svg>
+                        Discover KCW
+                    </a>
+                    <a href="community.html" class="btn btn-outline">Join the Movement</a>
+                </div>
+            </div>
+        </div>
+        <div class="hero-scroll" aria-hidden="true">
+            <span>Scroll</span>
+            <div class="scroll-line"></div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════ TICKER ═══════════════════ -->
+    <div class="ticker" aria-hidden="true">
+        <div class="ticker-inner">
+            <span class="ticker-item">Social Justice for All Kenyans</span>
+            <span class="ticker-item">Good Governance Now</span>
+            <span class="ticker-item">Electoral Justice &amp; Transparency</span>
+            <span class="ticker-item">Economic Prosperity for All</span>
+            <span class="ticker-item">47 Counties — One Nation</span>
+            <span class="ticker-item">Kenya Cannot Wait</span>
+            <span class="ticker-item">IFK / B4 Annual Conferences</span>
+            <span class="ticker-item">A Prosperous Kenya For All</span>
+            <!-- Duplicate for seamless loop -->
+            <span class="ticker-item">Social Justice for All Kenyans</span>
+            <span class="ticker-item">Good Governance Now</span>
+            <span class="ticker-item">Electoral Justice &amp; Transparency</span>
+            <span class="ticker-item">Economic Prosperity for All</span>
+            <span class="ticker-item">47 Counties — One Nation</span>
+            <span class="ticker-item">Kenya Cannot Wait</span>
+            <span class="ticker-item">IFK / B4 Annual Conferences</span>
+            <span class="ticker-item">A Prosperous Kenya For All</span>
+        </div>
+    </div>
+
+    <!-- ═══════════════════ STATS BAR ═══════════════════ -->
+    <div class="stats-bar">
+        <div class="container">
+            <div class="stat-item">
+                <span class="stat-number" data-counter="47">0</span>
+                <span class="stat-label">Counties Reached</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number" data-counter="49">0</span>
+                <span class="stat-label">Annual Conferences</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number" data-counter="4">0</span>
+                <span class="stat-label">Programme Pillars</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number" data-counter="3">0</span>
+                <span class="stat-label">Pillars of Justice</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════════════ VISION PILLARS ═══════════════════ -->
+    <section class="section section-dark clip-down" aria-labelledby="vision-title">
+        <div class="container">
+            <div class="text-center mb-56">
+                <span class="section-label">Our Vision</span>
+                <div class="accent-line center wide"></div>
+                <h2 id="vision-title" class="display" style="font-size:clamp(32px,5vw,60px);letter-spacing:0.06em;">
+                    A <span class="text-gold">New Kenya</span> for All
+                </h2>
+                <p style="color:var(--grey);max-width:600px;margin:16px auto 0;font-size:15px;line-height:1.7;">
+                    KCW envisions a transformed nation — just, prosperous, and democratically transparent.
+                    Three pillars anchor everything we do.
+                </p>
+            </div>
+            <div class="grid-3">
+                <div class="pillar-card social reveal">
+                    <span class="pillar-number">01</span>
+                    <span class="pillar-icon">⚖️</span>
+                    <h3>Social Justice</h3>
+                    <p>A New Kenya where justice, rule of law, and constitutional freedoms are guaranteed to every
+                        citizen — from the least to the greatest — through equal application of the law, building a
+                        cohesive, well-knit society.</p>
+                </div>
+                <div class="pillar-card economic reveal reveal-delay-1">
+                    <span class="pillar-number">02</span>
+                    <span class="pillar-icon">📈</span>
+                    <h3>Economic Justice</h3>
+                    <p>A New Kenya where all who wish to work find meaningful employment, and local investors can thrive
+                        in a prosperous business environment — driving household and national economic growth for all.
+                    </p>
+                </div>
+                <div class="pillar-card electoral reveal reveal-delay-2">
+                    <span class="pillar-number">03</span>
+                    <span class="pillar-icon">🗳️</span>
+                    <h3>Electoral Justice</h3>
+                    <p>A New Kenya with fair, credible, transparent elections — where national poll tallying streams
+                        live on every registered voter's mobile device, eliminating disputed results and restoring
+                        democratic trust.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════ ABOUT TEASER ═══════════════════ -->
+    <section class="section section-black" aria-labelledby="about-teaser-title">
+        <div class="container">
+            <div class="grid-2" style="gap:64px;">
+                <div class="about-teaser-img reveal">
+                    <img src="images/founder.jpeg" alt="Mabonga C Mabonga — Founder, Kenya Cannot Wait">
+                    <div class="founder-name-tag">
+                        <span class="name">Mabonga C Mabonga</span>
+                        <span class="title">Founder &amp; National Coordinator</span>
+                    </div>
+                </div>
+                <div class="about-teaser-text reveal reveal-delay-2">
+                    <span class="section-label">About KCW</span>
+                    <div class="accent-line"></div>
+                    <h2 id="about-teaser-title" class="display"
+                        style="font-size:clamp(30px,4.5vw,54px);letter-spacing:0.06em;margin-bottom:24px;">
+                        WHO WE ARE<br><span class="text-gold">&amp; WHY WE EXIST</span>
+                    </h2>
+                    <p>KCW is a peoples' driven sociopolitical movement seeking to catalyze citizen participation on
+                        matters of social justice, good governance, and faith through advocacy of ethical governance.
+                    </p>
+                    <p>We work through Public Policy Debates, Political Consultancy Services, our DCCA Project, and
+                        annual IFK/B4 County and National Conferences — reaching every corner of Kenya's 47 counties.
+                    </p>
+                    <div class="quote-block" style="margin:28px 0;">
+                        <p>Kenya's time for change is not tomorrow — it is now. Every day we wait is a day someone is
+                            denied justice, prosperity, or a fair vote.</p>
+                        <cite>— Mabonga C Mabonga, Founder</cite>
+                    </div>
+                    <a href="about.html" class="btn btn-gold">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                            <path d="M5 12h14M12 5l7 7-7 7" />
+                        </svg>
+                        Learn More About Us
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════ PROGRAMMES TEASER ═══════════════════ -->
+    <section class="section section-charcoal" aria-labelledby="prog-teaser-title">
+        <div class="container">
+            <div class="flex-between mb-40" style="flex-wrap:wrap;gap:20px;">
+                <div>
+                    <span class="section-label">What We Do</span>
+                    <div class="accent-line"></div>
+                    <h2 id="prog-teaser-title" class="display"
+                        style="font-size:clamp(28px,4vw,52px);letter-spacing:0.06em;">
+                        OUR <span class="text-gold">4 PROGRAMMES</span>
+                    </h2>
+                </div>
+                <a href="programmes.html" class="btn btn-outline">View All Programmes</a>
+            </div>
+            <div class="grid-2" style="gap:20px;">
+                <div class="prog-teaser reveal">
+                    <div class="prog-teaser-num">01</div>
+                    <div>
+                        <h4>Public Policy Debates (PPD)</h4>
+                        <p>Hosting independent public policy debates that build civic education and capacity on emerging
+                            political discourse across Kenya.</p>
+                    </div>
+                </div>
+                <div class="prog-teaser reveal reveal-delay-1">
+                    <div class="prog-teaser-num">02</div>
+                    <div>
+                        <h4>Grassroot Political Consultancy</h4>
+                        <p>Providing unmatched political consultancy services to new and established politicians — from
+                            election campaigns to crisis management.</p>
+                    </div>
+                </div>
+                <div class="prog-teaser reveal reveal-delay-2">
+                    <div class="prog-teaser-num">03</div>
+                    <div>
+                        <h4>IFK/B4 Annual Conferences</h4>
+                        <p>49 annual conferences countrywide: 47 county-level and 2 national — advocating patriotic
+                            citizen participation and nationbuilding.</p>
+                    </div>
+                </div>
+                <div class="prog-teaser reveal reveal-delay-3">
+                    <div class="prog-teaser-num">04</div>
+                    <div>
+                        <h4>DCCA Project M&amp;E</h4>
+                        <p>Pushing for constitutional reforms through the DCCA initiative to provide better separation
+                            of powers and economic opportunity for all Kenyans.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════ CTA BANNER ═══════════════════ -->
+    <div class="cta-banner">
+        <div class="container">
+            <h2>BE PART OF THE MOVEMENT</h2>
+            <p>Join thousands of Kenyans standing up for justice, good governance, and a prosperous future. Your voice
+                matters — Kenya Cannot Wait.</p>
+            <div class="btn-group">
+                <a href="community.html" class="btn btn-dark">Join Our Community</a>
+                <a href="donate.html" class="btn btn-dark">Support KCW</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════════════ FOOTER ═══════════════════ -->
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <div class="footer-logo-badge">KCW</div>
+                        <div>
+                            <div class="org"
+                                style="font-family:var(--font-display);font-size:18px;letter-spacing:0.1em;color:var(--gold);">
+                                Kenya Cannot Wait</div>
+                            <div
+                                style="font-size:11px;color:var(--grey);letter-spacing:0.12em;text-transform:uppercase;">
+                                One People · One Cake · One Faith</div>
+                        </div>
+                    </div>
+                    <p>A peoples' driven sociopolitical movement seeking to catalyze citizen participation on matters of
+                        social justice, good governance, and electoral reform in Kenya.</p>
+                    <div class="footer-social" style="margin-top:20px;">
+                        <a href="#" aria-label="Facebook">f</a>
+                        <a href="#" aria-label="Twitter/X">𝕏</a>
+                        <a href="#" aria-label="YouTube">▶</a>
+                        <a href="#" aria-label="WhatsApp">✉</a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h5>Navigation</h5>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="programmes.html">Programmes</a></li>
+                        <li><a href="community.html">Community</a></li>
+                        <li><a href="donate.html">Give &amp; Partner</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Programmes</h5>
+                    <ul>
+                        <li><a href="programmes.html">Public Policy Debates</a></li>
+                        <li><a href="programmes.html">Political Consultancy</a></li>
+                        <li><a href="programmes.html">IFK/B4 Conferences</a></li>
+                        <li><a href="programmes.html">DCCA Project M&amp;E</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Contact</h5>
+                    <ul>
+                        <li><a href="mailto:info@kcw.co.ke">info@kcw.co.ke</a></li>
+                        <li><a href="tel:+254000000000">+254 (0)00 000 0000</a></li>
+                        <li><a href="contact.html">Northlands, Nairobi</a></li>
+                        <li><a href="https://www.kcw.co.ke" target="_blank" rel="noopener">www.kcw.co.ke</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-divider"></div>
+            <div class="footer-bottom">
+                <p>© 2025 Kenya Cannot Wait. All rights reserved.</p>
+                <p class="tagline">ONE PEOPLE · ONE CAKE · ONE FAITH</p>
+                <p style="color:var(--grey);font-size:12px;">Nairobi, Kenya</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+
+</html>
